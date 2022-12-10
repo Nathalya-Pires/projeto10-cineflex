@@ -67,7 +67,7 @@ const Sessao = styled.div`
     height: 43px;
     background-color: #E8833A;
     border-radius: 3px;
-    border-color: #E8833A;
+    border: none;
     margin: 2%;
     font-family: 'Roboto';
     font-style: normal;
