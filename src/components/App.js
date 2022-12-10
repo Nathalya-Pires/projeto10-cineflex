@@ -1,20 +1,21 @@
 import Assentos from "../pages/Assentos";
 import Home from "../pages/Home";
 import Sessoes from "../pages/Sessoes";
-import NavBar from "./NavBar";
 import Sucesso from "../pages/Sucesso";
+import NavBar from "./NavBar";
 
 
 function App() {
-  return (
+  return (    
     <>
      <NavBar/>
      <Home/>
-     <Sessoes/>
+     {/* <Sessoes/>
      <Assentos/>
-     <Sucesso/>
+     <Sucesso/> */}
      </>
   )
 }
 
 export default App;
+
