@@ -44,6 +44,7 @@ const SelecionaHora = styled.div`
     align-items: center;
     text-align: center;
     letter-spacing: 0.04em;
+    color:#293845;
 
 `
 const Sessao = styled.div`
