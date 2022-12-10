@@ -10,7 +10,7 @@ export default function NavBar(){
 
 
 const Navbar = styled.div`
-width: 100vw;
+width: 100%;
 height: 67px;
 font-family: 'Roboto', sans-serif;
 font-style: normal;
