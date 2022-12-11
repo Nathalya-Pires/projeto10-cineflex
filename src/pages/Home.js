@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import styled from "styled-components"
 import axios from "axios"
 import carregando from "../assets/carregando.gif"
+import { Link } from "react-router-dom"
 
 export default function Home() {
     const [filmes, setFilmes] = useState(undefined)
@@ -9,27 +10,25 @@ export default function Home() {
     useEffect(() => {
         const URL = "https://mock-api.driven.com.br/api/v8/cineflex/movies"
         const requisicao = axios.get(URL);
-
-        requisicao.then(res => {
-            setFilmes(res.data)
-
-        })
-
+        requisicao.then(res => {setFilmes(res.data)})
         requisicao.catch((err) => alert(err.response.data.message))
+        }, [])
 
+    if (filmes === undefined){
+        return <Loading src={carregando}/>
+    }
 
-    }, [])
-    console.log(filmes)
     return (
         <>
             <SelecionaFilme>
                 Selecione o filme
             </SelecionaFilme>
             <ListaFilmes>
-                {filmes ? (filmes.map((f) => <Filme key={f.title}>
+                { filmes.map((f) => <Filme key={f.id}>
+                    <Link to={`/sessoes/${f.id}`}>
                     <img src={f.posterURL} alt={f.title}/>
-                </Filme>)) : <img src={carregando} />}
-
+                    </Link>
+                </Filme>) }
             </ListaFilmes>
         </>
     )
@@ -73,7 +72,10 @@ const Filme = styled.div`
  img{
     width: 129px;
     height: 193px;
-   
- }
- `
+    }
+`
+const Loading = styled.img`
+    width: 50%;
+    margin: 23% 27% 27% 27%;
+`
 

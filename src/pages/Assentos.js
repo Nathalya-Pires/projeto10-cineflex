@@ -1,25 +1,34 @@
+import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import Rodape from "../components/Rodape"
+import axios from "axios"
+import carregando from "../assets/carregando.gif"
+import { useEffect, useState } from "react"
 
 export default function Assentos() {
+    const { idSessao } = useParams()
+    const [assento, setAssento] = useState(undefined)
+
+    useEffect(() => {
+        const URL = `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`
+        const requisicao = axios.get(URL);
+        requisicao.then(res => setAssento(res.data.seats))
+        requisicao.catch((err) => alert(err.response.data.message))
+
+    }, [])
+    console.log(assento)
+    if (assento === undefined) {
+        return <Loading src={carregando} />
+    }
+
     return (
         <>
             <SelecionaAssento>
                 Selecione o(s) assento(s)
             </SelecionaAssento>
             <ListaAssentos>
-                <Assento>
-                    01
-                </Assento>
-                <Assento>
-                    01
-                </Assento>
-                <Assento>
-                    01
-                </Assento>
-                <Assento>
-                    01
-                </Assento>
+                {assento.map((a) => <Assento>{a.name}</Assento>)}
+
             </ListaAssentos>
             <Legenda>
 
@@ -40,27 +49,27 @@ export default function Assentos() {
 
             </Legenda>
             <ContainerValidacao>
-            <Comprador>
-            Nome do comprador:
-            <input type="text" name="name" placeholder="Digite seu nome..." />
-            </Comprador>
+                <Comprador>
+                    Nome do comprador:
+                    <input type="text" name="name" placeholder="Digite seu nome..." />
+                </Comprador>
 
-            <DocComprador>
-            CPF do comprador:
-            <input type="text" name="cpf" placeholder="Digite seu CPF..." />
-            </DocComprador>
+                <DocComprador>
+                    CPF do comprador:
+                    <input type="text" name="cpf" placeholder="Digite seu CPF..." />
+                </DocComprador>
 
-            <button>Reservar assento(s)</button>
+                <button>Reservar assento(s)</button>
 
             </ContainerValidacao>
-            <Rodape/>
+            {/* <Rodape/> */}
 
         </>
     )
 }
 
 const SelecionaAssento = styled.div`
-    width: 100vw;
+    width: 100%;
     height: 110px;
     font-family: 'Roboto';
     font-style: normal;
@@ -73,14 +82,15 @@ const SelecionaAssento = styled.div`
     text-align: center;
     letter-spacing: 0.04em;
     color:#293845;
-
 `
 const ListaAssentos = styled.ul`
-    width: 100vw;
-    background-color: red;
+    max-width: 380px;
     display: flex;
+    flex-wrap:wrap;
     justify-content: space-between;
-    `
+    margin: 0 auto;
+`
+
 const Assento = styled.li`
     width: 26px;
     height: 26px;
@@ -88,6 +98,7 @@ const Assento = styled.li`
     border: 1px solid #808F9D;
     border-radius: 12px;
     box-sizing: border-box;
+    margin: 5px;
 
     font-family: 'Roboto';
     font-style: normal;
@@ -103,7 +114,7 @@ const Assento = styled.li`
 
 `
 const Legenda = styled.div`
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content:center;
     
@@ -172,10 +183,11 @@ const ContainerValidacao = styled.form`
     font-weight: 400;
     font-size: 18px;
     line-height: 21px;
-    margin: 5%;
-
+    margin: 2%;
+   
+    
     input{
-    width: 327px;
+    width: 100%;
     height: 51px;
     background: #FFFFFF;
     border: 1px solid #D5D5D5;
@@ -192,8 +204,8 @@ const ContainerValidacao = styled.form`
     line-height: 21px;
     color: #AFAFAF;
     }
-
     }
+    
 
     button{
     width: 225px;
@@ -208,17 +220,23 @@ const ContainerValidacao = styled.form`
     background: #E8833A;
     border-radius: 3px;
     border: none;
-    margin: 5%;;
+    margin: 5%;
     }
 `
 const Comprador = styled.label`
+    width: 80%;
     display: flex;
     flex-direction: column;
 
 `
 const DocComprador = styled.label`
+    width: 80%;
     display: flex;
     flex-direction: column;
 
     
+`
+const Loading = styled.img`
+    width: 50%;
+    margin: 23% 27% 27% 27%;
 `
