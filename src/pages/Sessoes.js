@@ -6,7 +6,7 @@ import styled from "styled-components"
 import Rodape from "../components/Rodape"
 import Sessao from "../components/Sessao"
 
-export default function Sessoes({data, setData}) {
+export default function Sessoes({infos, setInfos }) {
     const { idFilme } = useParams()
     const [days, setDays] = useState(undefined)
     
@@ -15,7 +15,7 @@ export default function Sessoes({data, setData}) {
         const URL = `https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`
         const requisicao = axios.get(URL);
         requisicao.then(res => (setDays(res.data.days),
-        setData(res.data)))
+        setInfos({...infos, filme: res.data.title, imagem: res.data.posterURL})))
         requisicao.catch((err) => alert(err.response.data.message))
 
     }, [])
@@ -29,12 +29,17 @@ export default function Sessoes({data, setData}) {
             <SelecionaHora>
                 Selecione o horário
             </SelecionaHora>
-            {days.map((days) => <Sessao key={days.id} days={days} />)}
-            <Rodape data={data} />
+            <Container>
+            {days.map((days) => <Sessao infos={infos} setInfos={setInfos} key={days.id} days={days} />)}
+            </Container>
+            <Rodape infos={infos} />
         </>
     )
 }
 
+const Container = styled.div`
+margin-bottom: 120px;
+`
 const SelecionaHora = styled.div`
     width: 100%;
     height: 110px;

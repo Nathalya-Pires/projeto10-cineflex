@@ -4,24 +4,26 @@ import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 
-export default function Formulario() {
+export default function Formulario({ assentos, infos, setInfos, ids }) {
     const navigate = useNavigate()
-    const [ids, setIds] = useState([])
     const [nome, setNome] = useState("")
     const [cpf, setCpf] = useState("")
 
 
-    function enviaForm(e){
+    function enviaForm(e) {
         e.preventDefault()
 
+        setInfos({...infos, nome: nome, cpf: cpf, assentos: assentos})
+
         const requisicao = axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many", {
-        ids: ids,
-        name: nome,
-        cpf: cpf
+            ids: ids,
+            name: nome,
+            cpf: cpf
         })
-        requisicao.then((res) => (console.log(res),navigate("/sucesso")))
-        requisicao.catch(err => console.log(err.response.data))
-        
+        requisicao.then((res) => (navigate("/sucesso")))
+        requisicao.catch(err => alert(err.response.data))
+
+
     }
 
 
@@ -55,7 +57,7 @@ const ContainerValidacao = styled.form`
     font-weight: 400;
     font-size: 18px;
     line-height: 21px;
-    margin: 2%;
+    margin: 2% 0 100px;
    
     
     input{

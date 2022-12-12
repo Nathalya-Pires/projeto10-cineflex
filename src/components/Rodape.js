@@ -1,19 +1,26 @@
 import styled from "styled-components"
 
-export default function Rodape({ data }) {
-    const { posterURL, title } = data
-  
+export default function Rodape({ infos}) {
+    const { imagem, filme, dia, hora } = infos
+
     return (
         <FilmeEscolhido>
             <Filme>
-                <img src={posterURL} alt={title} />
+                <img src={imagem} alt={filme} />
             </Filme>
-            <span>{title}</span>
+            <Legenda>
+                <p>{filme}</p>
+                <p>{dia}  {hora}</p></Legenda>
         </FilmeEscolhido>
-
     )
+
+
 }
 
+const Legenda = styled.div`
+    display: flex;
+    flex-direction: column;
+`
 const FilmeEscolhido = styled.div`
     width: 100%;
     height: 117px;
@@ -28,9 +35,7 @@ const FilmeEscolhido = styled.div`
     align-items: center;
     position: fixed;
     bottom: 0;
-
 `
-
 const Filme = styled.div`
     width: 66px;
     height: 90px;
@@ -47,4 +52,4 @@ const Filme = styled.div`
     height: 73px;
    
  }
- `
+`

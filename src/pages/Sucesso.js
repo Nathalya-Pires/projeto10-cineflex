@@ -1,6 +1,9 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
-export default function Sucesso() {
+export default function Sucesso({infos, setInfos}) {
+    const {filme, data, hora, assentos, cpf, nome} = infos
+
     return (
         <>
             <MensagemSucesso>
@@ -9,20 +12,22 @@ export default function Sucesso() {
             <ContainerCheck>
                 <CheckFilme>
                     <h1>Filme e sessão</h1>
-                    <p>Enola Holmes</p>
-                    <p>24/06/2021 15:00</p>
+                    <p>{filme}</p>
+                    <p>{data} - {hora}</p>
                 </CheckFilme>
                 <CheckIngresso>
                     <h1>Ingressos</h1>
-                    <p>Assento 15</p>
-                    <p>Assento 16</p>
+                    {assentos.map((a,i) => <p key={i}>Assento {a}</p>)}
+                    
                 </CheckIngresso>
                 <CheckComprador>
                     <h1>Comprador</h1>
-                    <p>Nome: João da Silva Sauro</p>
-                    <p>CPF: 123.456.789-10</p>
+                    <p>{nome}</p>
+                    <p>{cpf}</p>
                 </CheckComprador>
-                <button>Voltar pra Home</button>
+                <Link to={`/`}>
+                <button onClick={() => setInfos({})}>Voltar pra Home</button>
+                </Link>
             </ContainerCheck>
         </>
     )

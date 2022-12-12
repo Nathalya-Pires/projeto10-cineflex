@@ -8,7 +8,7 @@ import { useState } from "react";
 
 
 function App() {
-  const [data, setData] = useState(undefined)
+  const [infos, setInfos] = useState({})
 
   return (    
     <>
@@ -16,9 +16,9 @@ function App() {
      <BrowserRouter>
      <Routes>
      <Route path="/" element={<Home/>} />
-     <Route path="/sessoes/:idFilme" element={<Sessoes data={data} setData={setData}/>} />
-     <Route path="/assentos/:idSessao" element={<Assentos data={data}/>} />
-     <Route path="/sucesso" element={<Sucesso data={data}/>} />    
+     <Route path="/sessoes/:idFilme" element={<Sessoes infos={infos} setInfos={setInfos} />} />
+     <Route path="/assentos/:idSessao" element={<Assentos infos={infos} setInfos={setInfos} />} />
+     <Route path="/sucesso" element={<Sucesso infos={infos} setInfos={setInfos}/>} />    
      </Routes>  
      </BrowserRouter> 
      </>

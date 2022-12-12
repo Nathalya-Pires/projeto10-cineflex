@@ -1,17 +1,21 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-export default function Sessao({ days }) {
+export default function Sessao({ infos, setInfos, days }) {
 
     const { weekday, showtimes, date } = days
-
+    
+    // console.log("infos sessao")
+    // console.log(showtimes)
     return (
         <ContainerSessao>
             <p>{weekday} - {date}</p>
             {showtimes.map((s) =>
 
                 <button key={s.id}>
-                    <Link to={`/assentos/${s.id}`}>
+                    <Link
+                        onClick={()=>(setInfos({ ...infos, data: date, hora: s.name, dia:weekday}))}
+                        to={`/assentos/${s.id}`}>
                         {s.name}
                     </Link>
                 </button>
@@ -19,8 +23,6 @@ export default function Sessao({ days }) {
         </ContainerSessao>
     )
 }
-
-
 
 const ContainerSessao = styled.div`
     width: 100%;

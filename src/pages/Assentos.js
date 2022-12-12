@@ -7,9 +7,11 @@ import { useEffect, useState } from "react"
 import Formulario from "../components/Formulario"
 import Assento from "../components/Assento"
 
-export default function Assentos({ data }) {
+export default function Assentos({ infos, setInfos }) {
     const { idSessao } = useParams()
     const [assento, setAssento] = useState(undefined)
+    const [ids, setIds] = useState([])
+    const [assentos, setAssentos] = useState([])
 
     useEffect(() => {
         const URL = `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`
@@ -22,14 +24,14 @@ export default function Assentos({ data }) {
     if (assento === undefined) {
         return <Loading src={carregando} />
     }
-
+    //console.log(ids)
     return (
         <>
             <SelecionaAssento>
                 Selecione o(s) assento(s)
             </SelecionaAssento>
             <ListaAssentos>
-                {assento.map((a) => <Assento key={a.name} a={a}/>)}
+                {assento.map((a) => <Assento assentos={assentos} setAssentos={setAssentos} infos={infos} setInfos={setInfos} ids={ids} setIds={setIds} key={a.name} a={a}/>)}
 
             </ListaAssentos>
             <Legenda>
@@ -46,8 +48,8 @@ export default function Assentos({ data }) {
                     <p>Indisponível</p>
                 </LegInd>
             </Legenda>
-            <Formulario />
-            <Rodape data={data} />
+            <Formulario assentos={assentos} setAssentos={setAssentos} infos={infos} setInfos={setInfos} ids={ids}/>
+            <Rodape infos={infos} />
 
         </>
     )
