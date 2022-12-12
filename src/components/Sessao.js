@@ -9,9 +9,13 @@ export default function Sessao({ days }) {
         <ContainerSessao>
             <p>{weekday} - {date}</p>
             {showtimes.map((s) =>
-                <Link to={`/assentos/${s.id}`}>
-                    <button>{s.name}</button>
-                </Link>)}
+
+                <button key={s.id}>
+                    <Link to={`/assentos/${s.id}`}>
+                        {s.name}
+                    </Link>
+                </button>
+            )}
         </ContainerSessao>
     )
 }
@@ -47,5 +51,11 @@ const ContainerSessao = styled.div`
     line-height: 21px;
     letter-spacing: 0.02em;
     color: #FFFFFF;
+    
+    a{
+        text-decoration: none;
+        color: #FFFFFF;
+    }
+
     }
 `

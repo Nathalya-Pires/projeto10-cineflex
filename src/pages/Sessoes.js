@@ -6,10 +6,10 @@ import styled from "styled-components"
 import Rodape from "../components/Rodape"
 import Sessao from "../components/Sessao"
 
-export default function Sessoes() {
+export default function Sessoes({data, setData}) {
     const { idFilme } = useParams()
     const [days, setDays] = useState(undefined)
-    const [data, setData] = useState(undefined)
+    
 
     useEffect(() => {
         const URL = `https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`
@@ -29,7 +29,7 @@ export default function Sessoes() {
             <SelecionaHora>
                 Selecione o horário
             </SelecionaHora>
-            {days.map((days) => <Sessao days={days} />)}
+            {days.map((days) => <Sessao key={days.id} days={days} />)}
             <Rodape data={data} />
         </>
     )

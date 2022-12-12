@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export default function Rodape({ data }) {
     const { posterURL, title } = data
-
+  
     return (
         <FilmeEscolhido>
             <Filme>
