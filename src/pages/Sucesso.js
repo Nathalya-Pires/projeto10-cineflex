@@ -24,9 +24,13 @@ export default function Sucesso({ infos, setInfos }) {
                     <p>{nome}</p>
                     <p>{cpf}</p>
                 </CheckComprador>
-                <Link data-test="go-home-btn" to={`/`}>
-                    <button onClick={() => setInfos({})}>Voltar pra Home</button>
-                </Link>
+
+                <button data-test="go-home-btn" onClick={() => setInfos({})}>
+                    <Link to={`/`}>
+                        Voltar pra Home
+                    </Link>
+                </button>
+
             </ContainerCheck>
         </>
     )

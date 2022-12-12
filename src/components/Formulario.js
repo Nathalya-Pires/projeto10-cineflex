@@ -89,6 +89,7 @@ const ContainerValidacao = styled.form`
     border-radius: 3px;
     border: none;
     margin: 5%;
+    cursor: pointer;
     }
 `
 const Comprador = styled.label`
