@@ -24,7 +24,7 @@ export default function Assentos({ infos, setInfos }) {
     if (assento === undefined) {
         return <Loading src={carregando} />
     }
-    //console.log(ids)
+   
     return (
         <>
             <SelecionaAssento>
@@ -32,7 +32,6 @@ export default function Assentos({ infos, setInfos }) {
             </SelecionaAssento>
             <ListaAssentos>
                 {assento.map((a) => <Assento assentos={assentos} setAssentos={setAssentos} infos={infos} setInfos={setInfos} ids={ids} setIds={setIds} key={a.name} a={a}/>)}
-
             </ListaAssentos>
             <Legenda>
                 <LegSel>
@@ -50,7 +49,6 @@ export default function Assentos({ infos, setInfos }) {
             </Legenda>
             <Formulario assentos={assentos} setAssentos={setAssentos} infos={infos} setInfos={setInfos} ids={ids}/>
             <Rodape infos={infos} />
-
         </>
     )
 }

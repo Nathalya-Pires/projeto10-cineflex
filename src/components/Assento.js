@@ -4,7 +4,7 @@ import styled from "styled-components"
 export default function Assento({ assentos, setAssentos, a, ids, setIds }) {
     const { isAvailable, name, id } = a
     const [clicado, setClicado] = useState({ background: "#C3CFD9", borda: "#808F9D" })
-    
+
 
     function click(a) {
 
@@ -25,20 +25,21 @@ export default function Assento({ assentos, setAssentos, a, ids, setIds }) {
                 setClicado({ background: "#1AAE9E", borda: "#0E7D71" })
                 setIds([...ids, id])
                 setAssentos([...assentos, name])
-                
             }
         }
-        
+
     }
 
     return (
-        <ContainerAssento onClick={() => click(a)} clicado={clicado} isAvailable={isAvailable}>{name}</ContainerAssento>
-
+        <ContainerAssento data-test="seat"
+         onClick={
+            () => click(a)}
+            clicado={clicado}
+            isAvailable={isAvailable}>
+            {name}
+        </ContainerAssento>
     )
-
 }
-
-
 
 const ContainerAssento = styled.li`
     width: 26px;

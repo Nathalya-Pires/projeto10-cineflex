@@ -24,7 +24,7 @@ export default function Home() {
                 Selecione o filme
             </SelecionaFilme>
             <ListaFilmes>
-                { filmes.map((f) => <Filme key={f.id}>
+                { filmes.map((f) => <Filme data-test="movie" key={f.id}>
                     <Link to={`/sessoes/${f.id}`}>
                     <img src={f.posterURL} alt={f.title}/>
                     </Link>
@@ -32,7 +32,6 @@ export default function Home() {
             </ListaFilmes>
         </>
     )
-
 }
 
 const SelecionaFilme = styled.div`

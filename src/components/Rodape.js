@@ -4,7 +4,7 @@ export default function Rodape({ infos}) {
     const { imagem, filme, dia, hora } = infos
 
     return (
-        <FilmeEscolhido>
+        <FilmeEscolhido data-test="footer">
             <Filme>
                 <img src={imagem} alt={filme} />
             </Filme>
@@ -13,8 +13,6 @@ export default function Rodape({ infos}) {
                 <p>{dia}  {hora}</p></Legenda>
         </FilmeEscolhido>
     )
-
-
 }
 
 const Legenda = styled.div`

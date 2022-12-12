@@ -22,31 +22,25 @@ export default function Formulario({ assentos, infos, setInfos, ids }) {
         })
         requisicao.then((res) => (navigate("/sucesso")))
         requisicao.catch(err => alert(err.response.data))
-
-
     }
-
 
     return (
         <ContainerValidacao onSubmit={enviaForm}>
             <Comprador>
                 Nome do comprador:
-                <input type="text" minLength={5} required value={nome} onChange={e => setNome(e.target.value)} placeholder="Digite seu nome..." />
+                <input data-test="client-name" type="text" minLength={5} required value={nome} onChange={e => setNome(e.target.value)} placeholder="Digite seu nome..." />
             </Comprador>
 
             <DocComprador>
                 CPF do comprador:
-                <input type="text" pattern={"([0-9]{3})[\.]?([0-9]{3})[\.]?([0-9]{3})[\-]?([0-9]{2})"} required title={"Digite um CPF"} value={cpf} onChange={e => setCpf(e.target.value)} placeholder="Digite seu CPF..." />
+                <input data-test="client-cpf" type="text" pattern={"([0-9]{3})[\.]?([0-9]{3})[\.]?([0-9]{3})[\-]?([0-9]{2})"} required title={"Digite um CPF"} value={cpf} onChange={e => setCpf(e.target.value)} placeholder="Digite seu CPF..." />
             </DocComprador>
 
-            <button type="submit">Reservar assento(s)</button>
+            <button data-test="book-seat-btn" type="submit">Reservar assento(s)</button>
 
         </ContainerValidacao>
-
     )
 }
-
-
 
 const ContainerValidacao = styled.form`
     display: flex;

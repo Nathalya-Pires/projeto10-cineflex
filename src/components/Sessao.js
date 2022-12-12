@@ -5,15 +5,13 @@ export default function Sessao({ infos, setInfos, days }) {
 
     const { weekday, showtimes, date } = days
     
-    // console.log("infos sessao")
-    // console.log(showtimes)
     return (
-        <ContainerSessao>
+        <ContainerSessao data-test="movie-day">
             <p>{weekday} - {date}</p>
             {showtimes.map((s) =>
 
                 <button key={s.id}>
-                    <Link
+                    <Link data-test="showtime"
                         onClick={()=>(setInfos({ ...infos, data: date, hora: s.name, dia:weekday}))}
                         to={`/assentos/${s.id}`}>
                         {s.name}

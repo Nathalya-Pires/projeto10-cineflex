@@ -1,8 +1,8 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
-export default function Sucesso({infos, setInfos}) {
-    const {filme, data, hora, assentos, cpf, nome} = infos
+export default function Sucesso({ infos, setInfos }) {
+    const { filme, data, hora, assentos, cpf, nome } = infos
 
     return (
         <>
@@ -10,23 +10,22 @@ export default function Sucesso({infos, setInfos}) {
                 Pedido feito com sucesso!
             </MensagemSucesso>
             <ContainerCheck>
-                <CheckFilme>
+                <CheckFilme data-test="movie-info">
                     <h1>Filme e sessão</h1>
                     <p>{filme}</p>
                     <p>{data} - {hora}</p>
                 </CheckFilme>
-                <CheckIngresso>
+                <CheckIngresso data-test="seats-info">
                     <h1>Ingressos</h1>
-                    {assentos.map((a,i) => <p key={i}>Assento {a}</p>)}
-                    
+                    {assentos.map((a, i) => <p key={i}>Assento {a}</p>)}
                 </CheckIngresso>
-                <CheckComprador>
+                <CheckComprador data-test="client-info">
                     <h1>Comprador</h1>
                     <p>{nome}</p>
                     <p>{cpf}</p>
                 </CheckComprador>
-                <Link to={`/`}>
-                <button onClick={() => setInfos({})}>Voltar pra Home</button>
+                <Link data-test="go-home-btn" to={`/`}>
+                    <button onClick={() => setInfos({})}>Voltar pra Home</button>
                 </Link>
             </ContainerCheck>
         </>
