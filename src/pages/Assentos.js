@@ -4,6 +4,7 @@ import Rodape from "../components/Rodape"
 import axios from "axios"
 import carregando from "../assets/carregando.gif"
 import { useEffect, useState } from "react"
+import Formulario from "../components/Formulario"
 
 export default function Assentos() {
     const { idSessao } = useParams()
@@ -27,7 +28,7 @@ export default function Assentos() {
                 Selecione o(s) assento(s)
             </SelecionaAssento>
             <ListaAssentos>
-                {assento.map((a) => <Assento>{a.name}</Assento>)}
+                {assento.map((a) => <Assento key={a.name}>{a.name}</Assento>)}
 
             </ListaAssentos>
             <Legenda>
@@ -48,20 +49,7 @@ export default function Assentos() {
                 </LegInd>
 
             </Legenda>
-            <ContainerValidacao>
-                <Comprador>
-                    Nome do comprador:
-                    <input type="text" name="name" placeholder="Digite seu nome..." />
-                </Comprador>
-
-                <DocComprador>
-                    CPF do comprador:
-                    <input type="text" name="cpf" placeholder="Digite seu CPF..." />
-                </DocComprador>
-
-                <button>Reservar assento(s)</button>
-
-            </ContainerValidacao>
+           <Formulario/>
             {/* <Rodape/> */}
 
         </>
@@ -90,7 +78,6 @@ const ListaAssentos = styled.ul`
     justify-content: space-between;
     margin: 0 auto;
 `
-
 const Assento = styled.li`
     width: 26px;
     height: 26px;
@@ -173,68 +160,6 @@ const LegInd = styled.div`
     border: 1px solid #F7C52B;
     border-radius: 17px;
     }
-`
-const ContainerValidacao = styled.form`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 21px;
-    margin: 2%;
-   
-    
-    input{
-    width: 100%;
-    height: 51px;
-    background: #FFFFFF;
-    border: 1px solid #D5D5D5;
-    border-radius: 3px;
-    margin: 1%;
-    padding: 2%;
-
-    ::placeholder{
-    padding: 2%;
-    font-family: 'Roboto';
-    font-style: italic;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 21px;
-    color: #AFAFAF;
-    }
-    }
-    
-
-    button{
-    width: 225px;
-    height: 42px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 21px;
-    letter-spacing: 0.04em;
-    color: #FFFFFF;
-    background: #E8833A;
-    border-radius: 3px;
-    border: none;
-    margin: 5%;
-    }
-`
-const Comprador = styled.label`
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-
-`
-const DocComprador = styled.label`
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-
-    
 `
 const Loading = styled.img`
     width: 50%;
