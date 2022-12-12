@@ -48,6 +48,7 @@ const MensagemSucesso = styled.div`
     align-items: center;
     letter-spacing: 0.04em;
     color: #247A6B;
+    
 `
 const ContainerCheck = styled.div`
     width: 100vw;
@@ -86,6 +87,11 @@ const ContainerCheck = styled.div`
     line-height: 21px;
     color: #FFFFFF;
     margin: 6%;
+
+    a{
+    text-decoration: none;
+    color: #FFFFFF;
+    }
     }
 `
 const CheckFilme = styled.div`
